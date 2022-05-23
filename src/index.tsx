@@ -1,15 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "./index.css";
+import "./normalize.css";
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import App from "./App";
+
+import reportWebVitals from "./reportWebVitals";
+
+import { IntlProvider } from "react-intl";
+import { AppLocale, localesOptions } from "./i18n/locales";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
+const locale = localesOptions.ptPT;
+const messages = AppLocale[locale];
+
 root.render(
   <React.StrictMode>
-    <App />
+    <IntlProvider
+      locale={locale}
+      messages={messages}
+      defaultLocale={localesOptions.ptBR}
+    >
+      <App />
+    </IntlProvider>
   </React.StrictMode>
 );
 
